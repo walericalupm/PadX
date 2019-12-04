@@ -1,8 +1,8 @@
 .sidenav {
   height: 100%;
-  background-color: #000;
   overflow-x: hidden;
   padding-top: 20px;
+  background: url('../../../src/assets/imgs/padel_login.jpg') 0 -100px;
 }
 
 
