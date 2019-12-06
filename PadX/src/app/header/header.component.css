@@ -1,9 +1,7 @@
-.btn-xl {
-  font-size: 18px;
-  padding: 20px 40px;
-}
 
 .btn-primary {
   background-color: #fed136;
   border-color: #fed136;
+  font-size: 16px;
+  padding: 10px 10px;
 }

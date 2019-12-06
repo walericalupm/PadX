@@ -57,7 +57,8 @@
   font-weight: 300;
 }
 
-.btn-black{
-  background-color: #000 !important;
-  color: #fff;
+.btn-primary {
+  background-color: #fed136;
+  border-color: #fed136;
 }
+
