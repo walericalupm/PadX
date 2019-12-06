@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../shared/models/user.model';
 import {Constants} from '../shared/constants';
+import {UserRestService} from '../shared/services/user-rest.service';
 
 @Component({
   selector: 'app-login',
@@ -12,24 +13,42 @@ export class LoginComponent implements OnInit {
   user: User;
   hasError: boolean;
   errorMessage: string;
-  constructor() { }
+  constructor(private userRestService: UserRestService) {
+    this.manageMessgaeErrorComponent(false, null);
+  }
 
   ngOnInit() {
     this.user = new User();
-    this.hasError = false;
-    this.errorMessage = '';
   }
 
 
   login() {
-    console.log(this.user)
     if (!this.user.password || !this.user.username) {
-      this.hasError = true;
-      this.errorMessage = Constants.MESSAGE_ERROR_LOGIN;
+      this.manageMessgaeErrorComponent(true,
+        Constants.MESSAGE_ERROR_USER_PASSWORD_REQUIRED);
     } else {
-      this.hasError = false;
-      this.errorMessage = '';
-      alert('Yeah!');
+      this.loginUserIntoServer();
     }
+  }
+  loginUserIntoServer() {
+    // Clean Error Messages
+    this.manageMessgaeErrorComponent(false, null);
+    // Call API Service
+    this.userRestService.getLogin(this.user.username, this.user.password).subscribe(
+      response => alert(response.headers.get(Constants.AUTORIZATION_HEADER_KEY)),
+      error => {
+        if (error.status === Constants.HTTP_UNAUTHORIZED_CODE) {
+          this.manageMessgaeErrorComponent(true,
+            Constants.MESSAGE_ERROR_UNAUTHORIZED);
+        } else {
+          this.manageMessgaeErrorComponent(true,
+            Constants.MESSAGE_ERROR_SERVICE_DOWN);
+        }
+      }
+    );
+  }
+  manageMessgaeErrorComponent(hasError: boolean, errorMessage?: string) {
+    this.hasError = hasError;
+    this.errorMessage = errorMessage === null ? Constants.EMPTY_STRING : errorMessage;
   }
 }

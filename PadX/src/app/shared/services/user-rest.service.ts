@@ -20,7 +20,7 @@ export class UserRestService {
       Constants.CONCAT_PARAM_URI_CHARACTER,
       Constants.PASSWORD_LOGIN_URI_PARAM,
       password);
-    return this.http.get(url);
+    return this.http.get(url, { observe: 'response' });
   }
 
   getFindUser(username: string) {
