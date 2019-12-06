@@ -13,6 +13,12 @@ export class Constants {
   public static readonly AUTORIZATION_HEADER_KEY = 'authorization';
   // ----------------- Request error codes --------- //
   public static readonly HTTP_UNAUTHORIZED_CODE = 401;
+  // ----------------- Token Settings ------------- //
+  public static readonly TOKEN_DURATION_MILLISECONDS = 600000; // 10 Minutes
+  public static readonly TOKEN_KEY = 'token';
+  public static readonly TOKEN_TIME_KEY = 'token_time';
+  // ----------------- User in Session Settings ------------- //
+  public static readonly USER_USERNAME_KEY = 'user';
   // ----------------- Error Messages ------------- //
   public static readonly MESSAGE_ERROR_UNAUTHORIZED = 'Usuario o contraseña no válida';
   public static readonly MESSAGE_ERROR_USER_PASSWORD_REQUIRED = 'Usuario / Contraseña requerido(s)';
