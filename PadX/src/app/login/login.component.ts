@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {User} from '../shared/models/user.model';
 import {Constants} from '../shared/constants';
 import {UserRestService} from '../shared/services/user-rest.service';
+import {TokenService} from '../shared/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit {
   user: User;
   hasError: boolean;
   errorMessage: string;
-  constructor(private userRestService: UserRestService) {
+  constructor(private userRestService: UserRestService,
+              private tokenService: TokenService,
+              private router: Router) {
     this.manageMessgaeErrorComponent(false, null);
   }
 
@@ -35,7 +39,13 @@ export class LoginComponent implements OnInit {
     this.manageMessgaeErrorComponent(false, null);
     // Call API Service
     this.userRestService.getLogin(this.user.username, this.user.password).subscribe(
-      response => alert(response.headers.get(Constants.AUTORIZATION_HEADER_KEY)),
+      response => {
+        this.tokenService.setToken(
+          response.headers.get(Constants.AUTORIZATION_HEADER_KEY),
+          this.user.username
+        );
+        this.router.navigateByUrl('');
+      },
       error => {
         if (error.status === Constants.HTTP_UNAUTHORIZED_CODE) {
           this.manageMessgaeErrorComponent(true,

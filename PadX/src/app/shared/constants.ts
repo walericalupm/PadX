@@ -1,4 +1,6 @@
 export class Constants {
+  // ----------------- App Settings ---------------------//
+  public static readonly APP_NAME = 'PadX'
   // ----------------- Communication with API -----------//
   public static readonly CONTENT_TYPE_HEADER_KEY = 'Content-Type';
   public static readonly CONTENT_TYPE_JSON_VALUE = 'application/json';
