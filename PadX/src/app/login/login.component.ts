@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {User} from '../shared/models/user.model';
 import {Constants} from '../shared/constants';
 import {UserRestService} from '../shared/services/user-rest.service';
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   user: User;
   hasError: boolean;
   errorMessage: string;
+
   constructor(private userRestService: UserRestService,
               private tokenService: TokenService,
               private router: Router) {
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       this.loginUserIntoServer();
     }
   }
+
   loginUserIntoServer() {
     // Clean Error Messages
     this.manageMessgaeErrorComponent(false, null);
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
   manageMessgaeErrorComponent(hasError: boolean, errorMessage?: string) {
     this.hasError = hasError;
     this.errorMessage = errorMessage === null ? Constants.EMPTY_STRING : errorMessage;

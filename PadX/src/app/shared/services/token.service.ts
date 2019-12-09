@@ -1,26 +1,34 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Constants} from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  private existToken: boolean;
+  private firstTokenValidation = false;
   constructor() {
     this.validateToken();
   }
   setToken(token: string , username: string) {
+    alert('Guardando Token');
+    console.log(token);
+    console.log(username);
     sessionStorage.setItem(Constants.TOKEN_KEY, token);
     sessionStorage.setItem(Constants.TOKEN_TIME_KEY, new Date().getTime().toString());
     sessionStorage.setItem(Constants.USER_USERNAME_KEY, username);
-    this.change.emit(true);
+    sessionStorage.setItem(Constants.TOKEN_FIRST_VALIDATION_KEY,
+      Constants.TOKEN_FIRST_VALIDATION_FALSE_KEY);
   }
   validateToken() {
+    this.existToken = true;
     if (sessionStorage.getItem(Constants.TOKEN_KEY)) {
       const tokenTime = Number(sessionStorage.getItem(Constants.TOKEN_TIME_KEY)) +
       Constants.TOKEN_DURATION_MILLISECONDS;
       const actualTime = new Date().getTime();
-      if (tokenTime > actualTime) {
+      console.log(tokenTime);
+      console.log(actualTime);
+      if (actualTime > tokenTime) {
         this.destroyToken();
       }
     } else {
@@ -31,7 +39,7 @@ export class TokenService {
     sessionStorage.removeItem(Constants.TOKEN_KEY);
     sessionStorage.removeItem(Constants.USER_USERNAME_KEY);
     sessionStorage.removeItem(Constants.TOKEN_TIME_KEY);
-    this.change.emit(false);
+    this.existToken = false;
   }
   getToken(): string {
     this.validateToken();
@@ -41,7 +49,22 @@ export class TokenService {
     this.validateToken();
     return sessionStorage.getItem(Constants.USER_USERNAME_KEY);
   }
-  getEmittedValue() {
-    return this.change;
+  existValidToken(): boolean {
+    this.validateToken();
+    return this.existToken;
+  }
+  validateFirsTimeToken() {
+    sessionStorage.removeItem(Constants.TOKEN_FIRST_VALIDATION_KEY);
+  }
+  getFirstTokenValidation(): boolean {
+    if (sessionStorage.getItem(Constants.TOKEN_FIRST_VALIDATION_KEY)) {
+      // TODO: Remove
+      console.log('Get Firts Validation True');
+      return true;
+    } else {
+      // TODO: Remove
+      console.log('Get Firts Validation false');
+      return false;
+    }
   }
 }

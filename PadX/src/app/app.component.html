@@ -24,14 +24,12 @@
         <li class="nav-item">
           <a id="MenuReserva" class="nav-link js-scroll-trigger isDisable" href="">Reservar</a>
         </li>
-        <li *ngIf="!existToken; else MenuLogout" class="nav-item">
+        <li [hidden]="existToken" class="nav-item">
           <a id="MenuLogin" class="nav-link" data-toggle="modal" routerLink="login">Ingresar</a>
         </li>
-        <ng-template #MenuLogout>
-          <li class="nav-item">
+        <li [hidden]="!existToken" class="nav-item">
             <a id="MenuLogout" class="nav-link" data-toggle="modal" routerLink="logout">Hola {{username}}!</a>
           </li>
-        </ng-template>
       </ul>
     </div>
   </div>

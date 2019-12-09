@@ -19,6 +19,9 @@ export class Constants {
   public static readonly TOKEN_DURATION_MILLISECONDS = 600000; // 10 Minutes
   public static readonly TOKEN_KEY = 'token';
   public static readonly TOKEN_TIME_KEY = 'token_time';
+  public static readonly TOKEN_FIRST_VALIDATION_KEY = 'token_first_validation';
+  public static readonly TOKEN_FIRST_VALIDATION_TRUE_KEY = '1';
+  public static readonly TOKEN_FIRST_VALIDATION_FALSE_KEY = '0';
   // ----------------- User in Session Settings ------------- //
   public static readonly USER_USERNAME_KEY = 'user';
   // ----------------- Error Messages ------------- //
