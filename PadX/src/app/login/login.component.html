@@ -11,7 +11,7 @@
         <div class="form-group">
           <label>Nombre de Usuario</label>
           <input type="text" class="form-control" [(ngModel)]="user.username" placeholder="Usuario" required="true"
-          name="username">
+                 name="username">
         </div>
         <div class="form-group">
           <label>Contrase&ntilde;a</label>
@@ -19,9 +19,68 @@
                  required="true" name="password">
         </div>
         <div *ngIf="hasError" class="alert alert-danger">{{errorMessage}}</div>
-        <button type="submit" class="btn btn-primary mr-1" (click)="login()">Inicia Sesi&oacute;n</button>
-        <button type="submit" class="btn btn-secondary">Registrate</button>
+        <button class="btn btn-primary mr-1" (click)="login()">Inicia Sesi&oacute;n</button>
+        <a id="register" class="btn btn-secondary " data-toggle="modal" href="#registerModal">Registrar</a>
       </form>
     </div>
   </div>
 </div>
+<!-- Modal Registro -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="usernameRegister" class="col-form-label">Usuario:</label>
+            <input type="text" class="form-control" id="usernameRegister" maxlength="8" [(ngModel)]="userRegister.username"
+                   (ngModelChange)="verifyUsername()" name="usernameRegister">
+          </div>
+          <div *ngIf="hasErrorUsernameDuplicated" class="alert alert-danger">{{errorMessage}}</div>
+          <div class="form-group">
+            <label for="emailRegister" class="col-form-label">Correo:</label>
+            <input type="email" class="form-control" id="emailRegister" [(ngModel)]="userRegister.email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="passwordRegister" class="col-form-label">Contrase&ntilde;a:</label>
+            <input type="password" class="form-control" id="passwordRegister" [(ngModel)]="userRegister.password"
+                   name="passwordRegister">
+          </div>
+          <div class="form-group">
+            <label for="passwordRetypedRegister" class="col-form-label">Repetir Contrase&ntilde;a:</label>
+            <input type="password" class="form-control" id="passwordRetypedRegister" [(ngModel)]="passwordToValidate"
+                   name="retypePasswordRegister">
+          </div>
+          <div class="form-group">
+            <label for="birthDateRegister" class="col-form-label">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="birthDateRegister" [(ngModel)]="userRegister.birthdate"
+                   name="birhdate">
+          </div>
+          <div *ngIf="hasErrorRegister" class="alert alert-danger">{{errorMessage}}</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="registrarUsuario" (click)="registerUser()"
+        name="buttRegister">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Toast Registro-->
+<div class="toast" id="toastRegistro" data-delay="3000">
+  <div class="toast-header">
+    <strong class="mr-auto">Registro de Usuario</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+    </button>
+  </div>
+  <div class="toast-body">
+    Usuario Registrado con &eacute;xito.
+  </div>
+</div>
+
