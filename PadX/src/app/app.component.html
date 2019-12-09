@@ -25,13 +25,34 @@
           <a id="MenuReserva" class="nav-link js-scroll-trigger isDisable" href="">Reservar</a>
         </li>
         <li [hidden]="existToken" class="nav-item">
-          <a id="MenuLogin" class="nav-link" data-toggle="modal" routerLink="login">Ingresar</a>
+          <a id="MenuLogin" class="nav-link" routerLink="login">Ingresar</a>
         </li>
         <li [hidden]="!existToken" class="nav-item">
-            <a id="MenuLogout" class="nav-link" data-toggle="modal" routerLink="logout">Hola {{username}}!</a>
+            <a id="MenuLogout" class="nav-link" data-toggle="modal" href="#logoutModal">Hola {{username}}!</a>
           </li>
       </ul>
     </div>
   </div>
 </nav>
+<!-- Modal Logout -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cerrar Session</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Estas seguro de cerrar sesion?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="logout" (click)="logout()">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

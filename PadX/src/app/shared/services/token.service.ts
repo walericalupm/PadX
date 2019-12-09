@@ -11,9 +11,6 @@ export class TokenService {
     this.validateToken();
   }
   setToken(token: string , username: string) {
-    alert('Guardando Token');
-    console.log(token);
-    console.log(username);
     sessionStorage.setItem(Constants.TOKEN_KEY, token);
     sessionStorage.setItem(Constants.TOKEN_TIME_KEY, new Date().getTime().toString());
     sessionStorage.setItem(Constants.USER_USERNAME_KEY, username);
@@ -58,12 +55,8 @@ export class TokenService {
   }
   getFirstTokenValidation(): boolean {
     if (sessionStorage.getItem(Constants.TOKEN_FIRST_VALIDATION_KEY)) {
-      // TODO: Remove
-      console.log('Get Firts Validation True');
       return true;
     } else {
-      // TODO: Remove
-      console.log('Get Firts Validation false');
       return false;
     }
   }

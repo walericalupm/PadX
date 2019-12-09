@@ -2,3 +2,7 @@
   color: black;
   opacity: 0.85;
 }
+.btn-primary {
+  background-color: #fed136;
+  border-color: #fed136;
+}

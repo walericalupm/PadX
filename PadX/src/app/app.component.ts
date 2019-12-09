@@ -26,4 +26,8 @@ export class AppComponent implements OnInit {
       this.username = this.tokenService.getUserLogged();
     }
   }
+  logout() {
+    this.tokenService.destroyToken();
+    window.location.reload();
+  }
 }
