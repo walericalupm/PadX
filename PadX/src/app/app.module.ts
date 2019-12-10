@@ -8,12 +8,14 @@ import { HeaderComponent } from './header/header.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {UserRestService} from './shared/services/user-rest.service';
+import { ReservationComponent } from './reservation/reservation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
