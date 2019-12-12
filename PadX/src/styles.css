@@ -174,7 +174,13 @@ header.masthead {
   background-position: center center;
   background-size: cover;
 }
-
+header.masthead-reservation {
+  background-image: url('src/assets/imgs/pad-reser.jpg');
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
 header.masthead .intro-text {
   padding-top: 150px;
   padding-bottom: 100px;
@@ -682,8 +688,3 @@ ul.social-buttons li a {
   outline: none;
   background-color: #212529;
 }
-
-ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
-  background-color: #fed136;
-}
-

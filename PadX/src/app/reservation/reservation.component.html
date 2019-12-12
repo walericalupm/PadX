@@ -1,72 +1,57 @@
-<div id="booking" class="section">
-  <div class="section-center">
+<header class="masthead-reservation">
+  <div id="booking" class="reservation">
     <div class="container">
       <div class="row">
         <div class="col-md-5 col-sm-6 col-xl-5">
           <div class="booking-cta">
-            <h1>Realiza tu reserva de pista</h1>
-            <p><span>Ingresa tu fecha programada de reserva como el n&uacute;mero de pista y verifica la disponibilidad de la misma
-            <br/>Recuerda que solo puedes tener tres reservas activas.</span></p>
+            <h1><strong><span>Realiza tu reserva de pista</span></strong></h1>
+            <p>Ingresa tu fecha programada de reserva como el n&uacute;mero de pista y verifica la disponibilidad de la
+              misma
+              <br/>Recuerda que solo puedes tener tres reservas activas.</p>
           </div>
         </div>
         <div class="col-md-6 col-sm-5 col-xl-6 col-md-offset-1">
           <div class="booking-form">
             <form>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12 col-sm-12">
                   <div class="form-group">
-                    <input class="form-control" type="text">
-                    <span class="form-label">Name</span>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input class="form-control" type="email">
-                    <span class="form-label">Email</span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input class="form-control" type="tel">
-                    <span class="form-label">Phone</span>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                  <div class="form-group">
-                    <span class="form-label">Rooms</span>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                    <span class="select-arrow"></span>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                  <div class="form-group">
-                    <span class="form-label">Guests</span>
-                    <select class="form-control">
-                      <option>1 Person</option>
-                      <option>2 People</option>
-                      <option>3 People</option>
+                    <span class="form-label">Pista</span>
+                    <select class="form-control" id="courtSelection" [(ngModel)]="reservation.courtId">
+                      <option value="1">Pista 1</option>
+                      <option value="2">Pista 2</option>
+                      <option value="3">Pista 3</option>
+                      <option value="4">Pista 4</option>
                     </select>
                     <span class="select-arrow"></span>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6">
                   <div class="form-group">
+                    <span class="form-label">Fecha</span>
                     <input class="form-control" type="date" required>
-                    <span class="form-label">Check In</span>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6">
                   <div class="form-group">
-                    <input class="form-control" type="date" required>
-                    <span class="form-label">Check Out</span>
+                    <span class="form-label" id="schedule" [(ngModel)]="hour">Horario</span>
+                    <select class="form-control">
+                      <option value="10">10:00</option>
+                      <option value="11">11:00</option>
+                      <option value="12">12:00</option>
+                      <option value="13">13:00</option>
+                      <option value="14">14:00</option>
+                      <option value="15">15:00</option>
+                      <option value="16">16:00</option>
+                      <option value="17">17:00</option>
+                      <option value="18">18:00</option>
+                      <option value="19">19:00</option>
+                      <option value="20">20:00</option>
+                      <option value="21">21:00</option>
+                    </select>
+                    <span class="select-arrow"></span>
                   </div>
                 </div>
               </div>
@@ -79,4 +64,4 @@
       </div>
     </div>
   </div>
-</div>
+</header>
