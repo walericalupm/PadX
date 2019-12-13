@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {HeaderComponent} from './header/header.component';
 import {ReservationComponent} from './reservation/reservation.component';
+import {Constants} from './shared/constants';
 
 
 const routes: Routes = [
-  {path: '', component: HeaderComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'reservation', component: ReservationComponent}
+  {path: Constants.ROUTE_INDEX, component: HeaderComponent},
+  {path: Constants.ROUTE_LOGIN, component: LoginComponent},
+  {path: Constants.ROUTE_RESERVATION, component: ReservationComponent}
 
 ];
 

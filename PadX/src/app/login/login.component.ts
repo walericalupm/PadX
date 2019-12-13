@@ -4,6 +4,7 @@ import {User} from '../shared/models/user.model';
 import {Constants} from '../shared/constants';
 import {UserRestService} from '../shared/services/user-rest.service';
 import {TokenService} from '../shared/services/token.service';
+// To Use Jquery
 declare var $: any;
 
 @Component({
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
           response.headers.get(Constants.AUTORIZATION_HEADER_KEY),
           this.user.username
         );
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl(Constants.ROUTE_INDEX);
       },
       error => {
         if (error.status === Constants.HTTP_UNAUTHORIZED_CODE) {

@@ -5,8 +5,8 @@ import {Observable} from 'rxjs';
 import {Constants} from '../constants';
 
 @Injectable()
-export class AuthorizationInterceptor implements HttpInterceptor{
-  constructor(private tokenService: TokenService){}
+export class AuthorizationInterceptor implements HttpInterceptor {
+  constructor(private tokenService: TokenService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get Token and Inject It
     if (this.tokenService.getToken()) {
@@ -15,6 +15,8 @@ export class AuthorizationInterceptor implements HttpInterceptor{
         Constants.AUTORIZATION_HEADER_KEY,
           token)});
       return next.handle(request);
+    } else {
+      return next.handle(req);
     }
   }
 

@@ -1,7 +1,7 @@
 export class Reservation {
-  rsvId: number;
-  courtId: number;
-  rsvdateTime: number;
+  rsvid: number;
+  courtid: number;
+  rsvdatetime: number;
   rsvday: string;
   rsvtime: string;
 }

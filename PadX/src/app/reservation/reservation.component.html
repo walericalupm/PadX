@@ -1,8 +1,8 @@
-<header class="masthead-reservation">
-  <div id="booking" class="reservation">
+<section id="reservation" class="reservation">
+  <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-5 col-sm-6 col-xl-5">
+        <div class="col-md-5 col-sm-12 col-xl-5">
           <div class="booking-cta">
             <h1><strong><span>Realiza tu reserva de pista</span></strong></h1>
             <p>Ingresa tu fecha programada de reserva como el n&uacute;mero de pista y verifica la disponibilidad de la
@@ -17,11 +17,12 @@
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
                     <span class="form-label">Pista</span>
-                    <select class="form-control" id="courtSelection" [(ngModel)]="reservation.courtId">
-                      <option value="1">Pista 1</option>
-                      <option value="2">Pista 2</option>
-                      <option value="3">Pista 3</option>
-                      <option value="4">Pista 4</option>
+                    <select class="form-control" id="courtSelection" [(ngModel)]="court"
+                            name="courtSelection">
+                      <option value=1>Pista 1</option>
+                      <option value=2>Pista 2</option>
+                      <option value=3>Pista 3</option>
+                      <option value=4>Pista 4</option>
                     </select>
                     <span class="select-arrow"></span>
                   </div>
@@ -31,32 +32,40 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <span class="form-label">Fecha</span>
-                    <input class="form-control" type="date" required>
+                    <input class="form-control" type="date" required [ngModel]="date"
+                           (ngModelChange)="date = $event" name="date" min="{{date}}">
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
-                    <span class="form-label" id="schedule" [(ngModel)]="hour">Horario</span>
-                    <select class="form-control">
-                      <option value="10">10:00</option>
-                      <option value="11">11:00</option>
-                      <option value="12">12:00</option>
-                      <option value="13">13:00</option>
-                      <option value="14">14:00</option>
-                      <option value="15">15:00</option>
-                      <option value="16">16:00</option>
-                      <option value="17">17:00</option>
-                      <option value="18">18:00</option>
-                      <option value="19">19:00</option>
-                      <option value="20">20:00</option>
-                      <option value="21">21:00</option>
+                    <span class="form-label" id="schedule">Horario</span>
+                    <select class="form-control" [(ngModel)]="hour" name="schedule">
+                      <option value="10:00:00">10:00</option>
+                      <option value="11:00:00">11:00</option>
+                      <option value="12:00:00">12:00</option>
+                      <option value="13:00:00">13:00</option>
+                      <option value="14:00:00">14:00</option>
+                      <option value="15:00:00">15:00</option>
+                      <option value="16:00:00">16:00</option>
+                      <option value="17:00:00">17:00</option>
+                      <option value="18:00:00">18:00</option>
+                      <option value="19:00:00">19:00</option>
+                      <option value="20:00:00">20:00</option>
+                      <option value="21:00:00">21:00</option>
                     </select>
                     <span class="select-arrow"></span>
                   </div>
                 </div>
               </div>
+              <div class="col-md-12 col-sm-12">
+                <div *ngIf="hasError" class="alert alert-dark alert-dismissible fade show">{{messageError}}
+                  <button type="button" (click)="cleanErrorMessage()" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
               <div class="form-btn">
-                <button class="submit-btn">Book Now</button>
+                <button class="btn btn-primary" (click)="reservar()">Reservar</button>
               </div>
             </form>
           </div>
@@ -64,4 +73,15 @@
       </div>
     </div>
   </div>
-</header>
+</section>
+<!--Toast Reserva-->
+<div class="toast" id="toastReserva" data-delay="3000">
+  <div class="toast-header">
+    <strong class="mr-auto">Resetva de Pista de Padel</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+    </button>
+  </div>
+  <div class="toast-body">
+    Reserva de pista realizada con &eacute;xito;
+  </div>
+</div>

@@ -1,16 +1,23 @@
-.div.reservation {
+.reservation{
+  min-height: 100vh;
+  width: 100%;
+  background: url('../../assets/imgs/pad-reservation_b.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   position: absolute;
-  top: 15%;
-  left: 0;
-  right: 0;
 }
 .booking-cta {
   text-align: justify;
   text-justify: inter-word;
+  top: 10%;
+  padding-right: 5%;
+  position: absolute;
 }
 .booking-cta h1 {
   color: #ffff;
-  font-size: 32px;
+  font-size: 31px;
 }
 .booking-cta p {
   color: #ffffff;
@@ -28,7 +35,7 @@
 }
 
 .booking-form {
-  padding: 30px 15px 0px;
+  padding: 0px 0px 0px;
   border-radius: 1px;
 }
 
@@ -41,16 +48,16 @@
   border: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  font-size: 15px;
-  color: #fec503;
-  font-weight: 300;
-  background: #f2f1f1;
+  font-size: 17px;
+  font-weight: 400;
+  color: #000000;
+  background: #ffffff;
   border-radius: 4px;
 }
 
 
 .booking-form input[type="date"].form-control:invalid {
-  color: #b1b6bd;
+  color: #000000;
 }
 
 .booking-form select.form-control {
@@ -80,7 +87,7 @@
 }
 
 .booking-form .form-label {
-  color: #184c8f;
+  color: #fec503;
   display: block;
   font-weight: 600;
   height: 25px;
@@ -95,7 +102,7 @@
   margin-bottom: 30px;
 }
 
-.booking-form .submit-btn {
+.booking-form .btn-primary {
   background: #fec503;
   border: none;
   font-weight: 600;
@@ -107,4 +114,3 @@
   border-radius: 4px;
   display: block;
 }
-

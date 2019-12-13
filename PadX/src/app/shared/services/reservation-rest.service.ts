@@ -6,12 +6,12 @@ import {Constants} from '../constants';
 @Injectable({
   providedIn: 'root'
 })
-export class UserRestService {
+export class ReservationRestService {
   constructor(private http: HttpClient) {
   }
   postReservation(reservation: Reservation) {
     const headers = new HttpHeaders().set(Constants.CONTENT_TYPE_HEADER_KEY, Constants.CONTENT_TYPE_JSON_VALUE);
-    const url = Constants.BASE_URI.concat(Constants.USER_URI);
+    const url = Constants.BASE_URI.concat(Constants.RESERVATION_URI);
     return this.http.post(url, reservation, {headers});
   }
   getAllReservationInDate(date: number) {

@@ -688,3 +688,12 @@ ul.social-buttons li a {
   outline: none;
   background-color: #212529;
 }
+
+.toast{
+  position: absolute; top: 70px; right: 30px;
+}
+
+.toast-header {
+  background-color: #fec503;
+  color: white;
+}
