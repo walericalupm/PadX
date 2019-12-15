@@ -11,16 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav text-uppercase ml-auto">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#servicios">Servicios</a>
+          <a class="nav-link js-scroll-trigger" routerLink="service">Servicios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#instalaciones">Instalaciones</a>
+          <a class="nav-link js-scroll-trigger" routerLink="court">Instalaciones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#instructores">Instructores</a>
+          <a class="nav-link js-scroll-trigger" routerLink="instructor">Instructores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contactanos" routerLink="reservation">Contactanos</a>
+          <a class="nav-link js-scroll-trigger" routerLink="contact">Contactanos</a>
         <li class="nav-item">
           <a *ngIf="existToken" class="nav-link js-scroll-trigger" routerLink="reservation">Reservar</a>
           <a *ngIf="!existToken" class="nav-link js-scroll-trigger isDisable">Reservar</a>
@@ -55,5 +55,5 @@
     </div>
   </div>
 </div>
-
 <router-outlet></router-outlet>
+

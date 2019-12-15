@@ -57,6 +57,10 @@ export class Constants {
   public static ROUTE_INDEX = '';
   public static ROUTE_LOGIN = 'login';
   public static ROUTE_RESERVATION = 'reservation';
+  public static ROUTE_SERVICES = 'service';
+  public static ROUTE_COURTS = 'court';
+  public static ROUTE_INSTRUCTORS = 'instructor';
+  public static ROUTE_CONTACT_US = 'contact';
   // ----------------- Other settings -------------- //
   public static readonly EMPTY_STRING = '';
   public static readonly WHITE_SPACE = ' ';

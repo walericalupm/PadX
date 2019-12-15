@@ -11,6 +11,10 @@ import {UserRestService} from './shared/services/user-rest.service';
 import { ReservationComponent } from './reservation/reservation.component';
 import {ReservationRestService} from './shared/services/reservation-rest.service';
 import {AuthorizationInterceptor} from './shared/intreceptor/authorization-interceptor';
+import { CourtComponent } from './court/court.component';
+import { ServiceComponent } from './service/service.component';
+import { InstructorsComponent } from './instructors/instructors.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import {AuthorizationInterceptor} from './shared/intreceptor/authorization-inter
     LoginComponent,
     HeaderComponent,
     ReservationComponent,
+    CourtComponent,
+    ServiceComponent,
+    InstructorsComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
