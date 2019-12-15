@@ -6,8 +6,8 @@
           <div class="booking-cta">
             <h1><strong><span>Realiza tu reserva de pista</span></strong></h1>
             <p>Ingresa tu fecha programada de reserva como el n&uacute;mero de pista y verifica la disponibilidad de la
-              misma
-              <br/>Recuerda que solo puedes tener tres reservas activas.</p>
+              misma. Puedes verificar tus reservas activas haciendo click a continuaci&oacute;n:
+              <button class="btn btn-primary btn-block" (click)="showActiveReservations()">Ver reservas activas</button>
           </div>
         </div>
         <div class="col-md-6 col-sm-5 col-xl-6 col-md-offset-1">
@@ -59,13 +59,14 @@
               </div>
               <div class="col-md-12 col-sm-12">
                 <div *ngIf="hasError" class="alert alert-dark alert-dismissible fade show">{{messageError}}
-                  <button type="button" (click)="cleanErrorMessage()" class="close" data-dismiss="alert" aria-label="Close">
+                  <button type="button" (click)="cleanErrorMessage()" class="close" data-dismiss="alert"
+                          aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
               </div>
               <div class="form-btn">
-                <button class="btn btn-primary" (click)="reservar()">Reservar</button>
+                <button class="btn btn-primary" (click)="reservate()">Reservar</button>
               </div>
             </form>
           </div>
@@ -83,5 +84,58 @@
   </div>
   <div class="toast-body">
     Reserva de pista realizada con &eacute;xito;
+  </div>
+</div>
+<!-- Modal Reservas realizadas -->
+<div class="modal fade" id="activeReservationsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reservas Activas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="!hasErrorUserReservations" class="modal-body">
+        <div *ngFor="let reservation of listReservations; let i = index" class="row">
+          <div class="col-md-10 col-sm-10">
+            <div class="alert alert-dark" role="alert">
+              Reserva | Pista:{{reservation.courtId}} Fecha: {{reservation.rsvday}} Hora: {{reservation.rsvtime}}
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <button type="button" class="btn btn-danger" (click)="deleteReservation(reservation)">
+              <span class="fa fa-trash"></span>
+            </button>
+          </div>
+          <hr/>
+        </div>
+      </div>
+      <div *ngIf="hasErrorUserReservations" class="modal-body">
+        <div class="alert alert-warning" role="alert">
+          {{messageErrorUserReservation}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Confirmacion de anulacion de reserva -->
+<div class="modal fade" id="deleteBookinModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Anular Reserva</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Estas segura de anular reserva de pista?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearReservationToDelete()">No</button>
+        <button type="button" class="btn btn-primary" id="logout" (click)="deleteReservationFromServer()">Si</button>
+      </div>
+    </div>
   </div>
 </div>

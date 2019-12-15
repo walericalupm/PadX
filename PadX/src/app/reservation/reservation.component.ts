@@ -5,6 +5,7 @@ import {formatDate} from '@angular/common';
 import {ReservationRestService} from '../shared/services/reservation-rest.service';
 import {TokenService} from '../shared/services/token.service';
 import {Router} from '@angular/router';
+import {ReservationResponse} from '../shared/models/reservation-response.model';
 // To Use Jquery
 declare var $: any;
 
@@ -18,9 +19,14 @@ export class ReservationComponent implements OnInit {
   private hour: string;
   private date: string;
   private hasError: boolean;
+  private hasErrorUserReservations: boolean;
   private needsLogin: boolean;
   private messageError: string;
   private court: string;
+  private listReservations: ReservationResponse[];
+  private messageErrorUserReservation: string;
+  private reservationToDelete: ReservationResponse;
+
 
   constructor(private reservationService: ReservationRestService,
               private tokenService: TokenService,
@@ -28,13 +34,20 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reservation = new Reservation();
-    this.court = Constants.DEFAULT_COURT;
-    this.hour = Constants.DEFAULT_HOUR;
-    this.date = this.getTodayDate();
+    if (!this.tokenService.getToken()) {
+      this.router.navigateByUrl(Constants.ROUTE_LOGIN);
+    } else {
+      this.reservation = new Reservation();
+      this.reservationToDelete = new ReservationResponse();
+      this.court = Constants.DEFAULT_COURT;
+      this.hour = Constants.DEFAULT_HOUR;
+      this.date = this.getTodayDate();
+      this.loadAllUserReservation();
+    }
   }
 
-  reservar() {
+  reservate() {
+    this.cleanErrorMessage();
     this.reservation.courtid = +this.court;
     this.reservation.rsvdatetime = this.convertReservationDateToJavascriptDateFormat();
     // Call API
@@ -92,4 +105,68 @@ export class ReservationComponent implements OnInit {
       this.router.navigateByUrl(Constants.ROUTE_LOGIN);
     }
   }
+
+  loadAllUserReservation() {
+    this.listReservations = [];
+    this.hasErrorUserReservations = false;
+    this.messageErrorUserReservation = Constants.EMPTY_STRING;
+    this.reservationService.getAllReservation().subscribe(
+      (value: ReservationResponse[]) => {
+        if (value.length > 0) {
+          this.addReservations(value);
+        } else {
+          this.hasErrorUserReservations = true;
+          this.messageErrorUserReservation = Constants.MESSAGE_INFORMATION_USER_DO_NOT_HAVE_RESERVATIONS;
+        }
+      },
+      error => {
+        if (error.status === Constants.HTTP_UNAUTHORIZED_CODE) {
+          this.router.navigateByUrl(Constants.ROUTE_LOGIN);
+        } else {
+          this.messageErrorUserReservation = Constants.MESSAGE_ERROR_SERVICE_DOWN;
+          this.hasErrorUserReservations = true;
+        }
+      }
+    );
+  }
+
+  addReservations(reservations: ReservationResponse[]) {
+    const today = this.convertReservationDateToJavascriptDateFormat();
+    for (const reservation of reservations) {
+      if (reservation.rsvdateTime > today) {
+        this.listReservations.push(reservation);
+      }
+    }
+    if (this.listReservations.length < 1) {
+      this.hasErrorUserReservations = true;
+      this.messageErrorUserReservation = Constants.MESSAGE_INFORMATION_USER_DO_NOT_HAVE_RESERVATIONS;
+    }
+  }
+  showActiveReservations() {
+    $('#activeReservationsModal').modal(Constants.SHOW_EVENT);
+  }
+
+  deleteReservation(reservation: ReservationResponse) {
+    this.reservationToDelete = reservation;
+    $('#activeReservationsModal').modal(Constants.HIDE_EVENT);
+    $('#deleteBookinModal').modal(Constants.SHOW_EVENT);
+  }
+
+  deleteReservationFromServer() {
+    $('#deleteBookinModal').modal(Constants.HIDE_EVENT);
+    this.reservationService.deleteReservation(this.reservationToDelete.rsvId.toString())
+      .subscribe(
+        value => {
+          this.loadAllUserReservation();
+        }
+      );
+    $('#activeReservationsModal').modal(Constants.SHOW_EVENT);
+  }
+
+  clearReservationToDelete() {
+    $('#deleteBookinModal').modal(Constants.HIDE_EVENT);
+    $('#activeReservationsModal').modal(Constants.SHOW_EVENT);
+    this.reservationToDelete = new ReservationResponse();
+  }
+
 }

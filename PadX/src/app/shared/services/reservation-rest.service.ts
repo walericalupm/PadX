@@ -23,7 +23,14 @@ export class ReservationRestService {
   }
   getAllReservation() {
     const url = Constants.BASE_URI.concat(Constants.RESERVATION_URI);
-    return this.http.get(url, { observe: 'response' });
+    return this.http.get(url);
+  }
+  deleteReservation(reservationId: string) {
+    const url = Constants.BASE_URI.concat(
+      Constants.RESERVATION_URI,
+      Constants.BACKSLASH_URI_CHARACTER,
+      reservationId);
+    return this.http.delete(url);
   }
 }
 

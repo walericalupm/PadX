@@ -46,6 +46,8 @@ export class Constants {
   public static readonly MESSAGE_ERROR_RESERVATION_NOT_REALIZED =  'Reserva no realizada';
   public static readonly MESSAGE_ERROR_COURT_NOT_AVAILABLE =  'Pista no disponible en fecha y hora seleccionada ' +
     'o ha superado el número máximo de reservas (Max 3)';
+  // ----------------- Info Messages --------------- //
+  public static MESSAGE_INFORMATION_USER_DO_NOT_HAVE_RESERVATIONS = 'Usuario no tiene reservas activas';
   // ----------------- Date Time Constants --------- //
   public static ISO_TIME_INITIAL_CHARACTER = 'T';
   public static UTC_TIME_CHARACTER = 'Z';
@@ -62,6 +64,7 @@ export class Constants {
   public static readonly SHOW_EVENT = 'show';
   public static readonly DEFAULT_HOUR = '10:00:00';
   public static readonly DEFAULT_COURT = '1';
+
 
 
 
